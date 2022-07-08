@@ -158,7 +158,7 @@ plt.hist(prim_1_up,weights=weight_1_up,histtype='step',label='up')
 plt.hist(prim_1_down,weights=weight_1_down,histtype='step',label='down')
 plt.legend()
 plt.yscale('log')
-plt.xlabel('MCPrimaryEnergy')
+plt.xlabel('MCPrimaryEnergyru')
 plt.ylabel(r'Event[$livetime^{-1}$]')
 
 plt.show()
