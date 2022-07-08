@@ -14,29 +14,25 @@ import glob
 
 # %%
 name_nu_1 = []
-name_nu_02 = []
-name_nu_50 = []
 
-# %%
-name_nu_1 = glob.glob('/data/user/hhamdaoui/reproduce/NuTau_CSMS_1_2.h5') # my file full sim
-#name_nu_1 = glob.glob('/data/user/hhamdaoui/reproduce/NuTau:NuTauBar_G1.0_E3:7_Z0:180_1_csms_FullnoGR.h5') # my file NuGeN Only
 
-#name_nu_1 = glob.glob('/data/user/joanna/CSecGen-Data/020_v4/nugen_nodetector_nutau_100_50*.h5') #YX file
-name_nu_02 = glob.glob('/data/user/joanna/CSecGen-Data/020_v4/nugen_nodetector_nutau_020_50*.h5')
-name_nu_50 = glob.glob('/data/user/joanna/CSecGen-Data/500_v4/nugen_nodetector_nutau_500_50*.h5')
+# %% add the input file path here
+#name_nu_1 = glob.glob('/data/user/hhamdaoui/reproduce/NuTau_CSMS_1_2.h5') # my file full sim
+name_nu_1 = glob.glob('/data/user/hhamdaoui/reproduce/NuTau:NuTauBar_G1.0_E3:7_Z0:180_1_csms_FullnoGR.h5') # my file NuGeN Only
+
+### YX files
+#name_nu_1 = glob.glob('/data/user/joanna/CSecGen-Data/100_v4/nugen_nodetector_nutau_100_50*.h5') #YX file
+
 
 # %%
 name_nu_1  =name_nu_1[:1]
-name_nu_02 =name_nu_1[:1]
-name_nu_50 =name_nu_1[:1]
+
 
 # %%
 len(name_nu_1)
 
 # %%
 NFiles_nu_1 =  2000.*np.ones(1)
-NFiles_nu_02 = 2000.*np.ones(1)
-NFiles_nu_50 = 1980.*np.ones(1)
 
 # %%
 
@@ -68,40 +64,13 @@ def weight_cal(f,fit,NFiles,livetime,selfveto):
     OneWeight=f.root.I3MCWeightDict.col('OneWeight')
     NEvents=f.root.I3MCWeightDict.col('NEvents')
     PrimaryNeutrinoEnergy=f.root.I3MCWeightDict.col('PrimaryNeutrinoEnergy')
-    #Conv_Weight=f.root.AtmWeight_Conv.col('value')
-    #Prompt_Weight=f.root.AtmWeight_Prompt.col('value')
-    #Prompt_PassRate=f.root.AtmWeight_Prompt_PassRate.col('value')
-    #Conv_PassRate=f.root.AtmWeight_Conv_PassRate.col('value')
     print('NEvents=',NEvents)
     print('NFiles=',NFiles)
 
     
     astro_weight = OneWeight/(NEvents*NFiles)*1.0e-18*np.power(PrimaryNeutrinoEnergy/100000,index)*norm_astro*livetime
-    #prompt_weight = OneWeight*2/(NEvents*NFiles)*Prompt_Weight*norm_prompt*livetime*Prompt_PassRate
-    #conv_weight = OneWeight*2/(NEvents*NFiles)*Conv_Weight*norm_conv*livetime*Conv_PassRate
-    #if selfveto == 1:
-       # prompt_weight = OneWeight*2/(NEvents*NFiles)*Prompt_Weight*norm_prompt*livetime*Prompt_PassRate
-      #  conv_weight = OneWeight*2/(NEvents*NFiles)*Conv_Weight*norm_conv*livetime*Conv_PassRate
-     #   print ("SelfVeto")
-    #else:
-        #print ("No SelfVeto")
-       # prompt_weight = OneWeight*2/(NEvents*NFiles)*Prompt_Weight*norm_prompt*livetime
-      #  conv_weight = OneWeight*2/(NEvents*NFiles)*Conv_Weight*norm_conv*livetime
-
-
-    #return zip(astro_weight,conv_weight,prompt_weight)
-    #return astro_weight+conv_weight+prompt_weight
     return astro_weight
 
-def timesplit_cal(f,name):
-    x0=f.getNode(name+'0').col('x')
-    x1=f.getNode(name+'1').col('x')
-    y0=f.getNode(name+'0').col('y')
-    y1=f.getNode(name+'1').col('y')
-    z0=f.getNode(name+'0').col('z')
-    z1=f.getNode(name+'1').col('z')
-    timesplit=np.sqrt((x0-x1)**2+(y0-y1)**2+(z0-z1)**2)
-    return timesplit
 
 class variable:
     def __init__(self,f,year,NFiles):
@@ -136,13 +105,6 @@ def selection(sample):
     idx = np.logical_and(idx,np.logical_not(np.isnan(sample.primary_energy)))
     idx = np.logical_and(idx,np.logical_not(np.isnan(sample.inice_primary_energy)))
     idx = np.logical_and(idx,np.logical_not(np.isnan(sample.weight)))
-    #idx = np.logical_and(idx,sample.diff>0)
-    #idx = np.logical_and(idx,np.logical_not(abs(sample.type)==14))
-    #idx = np.logical_not(abs(sample.type)==14)
-    #idx = abs(sample.type)==12
-    #idx = np.logical_not(abs(sample.type)==14)
-    #idx = np.logical_or(idx,sample.inter_type==2)
-    #idx = np.logical_and(idx,idx_f)
     return idx
 
 
@@ -151,23 +113,12 @@ seperation = 0.
 function = selection
 
 nu_1_inice=[]
-nu_02_inice=[]
-nu_50_inice=[]
 nu_1_zenith=[]
-nu_02_zenith=[]
-nu_50_zenith=[]
 nu_1_weight=[]
-nu_02_weight=[]
-nu_50_weight=[]
 nu_1_diff=[]
-nu_02_diff=[]
-nu_50_diff=[]
 nu_1_prim=[]
-nu_02_prim=[]
-nu_50_prim=[]
 nu_1_xsec=[]
-nu_02_xsec=[]
-nu_50_xsec=[]
+
 
 
 for file, nfiles in zip(name_nu_1,NFiles_nu_1):
@@ -187,16 +138,11 @@ print('number of raw events:',len(nu_1_zenith))
 idx_nu_1_up = nu_1_zenith<seperation
 idx_nu_1_down = nu_1_zenith>=seperation
 
-
 inice_1_up = nu_1_inice[idx_nu_1_up]
 inice_1_down = nu_1_inice[idx_nu_1_down]
 
-
-
 weight_1_up = nu_1_weight[idx_nu_1_up]
 weight_1_down = nu_1_weight[idx_nu_1_down]
-
-
 
 xsec_1_up = nu_1_xsec[idx_nu_1_up]
 xsec_1_down = nu_1_xsec[idx_nu_1_down]
