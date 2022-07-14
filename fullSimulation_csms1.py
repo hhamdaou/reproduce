@@ -33,6 +33,7 @@ from icecube.hdfwriter import I3HDFWriter
 from icecube.hdfwriter import I3SimHDFWriter
 from optparse import OptionParser
 from os.path import expandvars
+icetray.set_log_level_for_unit("I3NuG",icetray.I3LogLevel.LOG_FATAL)
 
 usage = "usage: %prog [options] inputfile"
 parser = OptionParser(usage)

@@ -2,3 +2,7 @@ NuTau_CSMS_1_2.h5
 NuTau:NuTauBar_G1.0_E3:7_Z0:180_1_csms_FullnoGR.h5
 NuTau:NuTauBar_G1.0_E3:7_Z0:180_1_csms_FullnoGR.i3
 NuTau_CSMS_1_2.i3.zst
+NuTau:NuTauBar_G1.0_E3:7_Z0:180_1_csms_02_FullnoGR.h5
+*.h5
+*.i3
+*.zst

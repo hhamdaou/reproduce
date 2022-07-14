@@ -43,11 +43,11 @@ import sys
 # for logging
 #
 icetray.I3Logger.global_logger = icetray.I3PrintfLogger()
-icetray.set_log_level(icetray.I3LogLevel.LOG_WARN)
+icetray.set_log_level(icetray.I3LogLevel.LOG_INFO)
 #icetray.set_log_level_for_unit("EarthModelService",icetray.I3LogLevel.LOG_TRACE)
 #icetray.set_log_level_for_unit("I3NuG",icetray.I3LogLevel.LOG_TRACE)
-icetray.set_log_level_for_unit("ZenithSampler",icetray.I3LogLevel.LOG_DEBUG)
-icetray.set_log_level_for_unit("I3NuG",icetray.I3LogLevel.LOG_DEBUG)
+icetray.set_log_level_for_unit("ZenithSampler",icetray.I3LogLevel.LOG_INFO)
+icetray.set_log_level_for_unit("I3NuG",icetray.I3LogLevel.LOG_INFO)
 #icetray.set_log_level_for_unit("I3NuG",icetray.I3LogLevel.LOG_INFO)
 
 #----------------
@@ -95,7 +95,7 @@ parser.add_option("-A", "--zenithsampling", default="COS", dest="ZENITHSUMPLING"
 
 # siumulation modes
 parser.add_option("-s", "--simmode",default="Detector", dest="SIMMODE", help="simulation mode: Full, InEarth, Detector")
-parser.add_option("-X", "--domuonextension",type="int",default=1, dest="MUEXT", help="0:no extension,1:extend detection volume as a function of energy")
+parser.add_option("-X", "--domuonextension",type="int",default=0, dest="MUEXT", help="0:no extension,1:extend detection volume as a function of energy")
 parser.add_option("-p", "--propmode",default="AutoDetect", dest="PROPMODE", help="propagation weight mode: AutoDetect, NoPropWeight, NCGRWeighted")
 parser.add_option("-I", "--intfactor",default="1:1:0", dest="INTFACTOR", help="final interaction weight factor, CC:NC:GR")
 parser.add_option("-i", "--injectionmode",default="Surface", dest="INJMODE", help="injection mode: Surface, Circle")

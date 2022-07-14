@@ -17,8 +17,12 @@ name_nu_1 = []
 
 
 # %% add the input file path here
+#name_nu_1 = glob.glob('/data/user/hhamdaoui/reproduce/NuE_G1.0_E3:7_Z0:180_1_csms_FullnoGR.h5') # my file full sim
+name_nu_1 = glob.glob('/data/user/hhamdaoui/reproduce/NuTau:NuTauBar_G1.0_E3:7_Z0:180_1_csms_FullnoGR.h5') # my file full sim
+
+
 #name_nu_1 = glob.glob('/data/user/hhamdaoui/reproduce/NuTau_CSMS_1_2.h5') # my file full sim
-name_nu_1 = glob.glob('/data/user/hhamdaoui/reproduce/NuTau:NuTauBar_G1.0_E3:7_Z0:180_1_csms_FullnoGR.h5') # my file NuGeN Only
+#name_nu_1 = glob.glob('/data/user/hhamdaoui/reproduce/NuTau:NuTauBar_G1.0_E3:7_Z0:180_1_csms_FullnoGR.h5') # my file NuGeN Only
 
 ### YX files
 #name_nu_1 = glob.glob('/data/user/joanna/CSecGen-Data/100_v4/nugen_nodetector_nutau_100_50*.h5') #YX file
@@ -154,19 +158,19 @@ diff_1_down = nu_1_diff[idx_nu_1_down]
 prim_1_up = nu_1_prim[idx_nu_1_up]
 prim_1_down = nu_1_prim[idx_nu_1_down]
 
-plt.hist(prim_1_up,weights=weight_1_up,histtype='step',label='up')
-plt.hist(prim_1_down,weights=weight_1_down,histtype='step',label='down')
-plt.legend()
+plt.hist(prim_1_up,weights=weight_1_up,bins=30,histtype='step',label='up')
+plt.hist(prim_1_down,weights=weight_1_down,bins=30,histtype='step',label='down')
+plt.legend() 
 plt.yscale('log')
 plt.xlabel('MCPrimaryEnergy')
 plt.ylabel(r'Event[$livetime^{-1}$]')
 
 plt.show()
-plt.savefig('Energy_NuGen.png')
+plt.savefig('Nutau_Energy_csms_1.png')
 plt.close()
 plt.hist(nu_1_zenith,weights=nu_1_weight,histtype='step',label='zenith')
 plt.legend()
-plt.xlabel('MCPrimaryZenith')
+plt.xlabel('MCPrimaryZenith_csms_02')
 plt.ylabel(r'Event[$livetime^{-1}$]')
 plt.show()
-plt.savefig('Zenith_NuGen.png')
+plt.savefig('Nutau_Zenith_csms_1.png')
