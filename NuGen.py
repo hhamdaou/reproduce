@@ -43,11 +43,11 @@ import sys
 # for logging
 #
 icetray.I3Logger.global_logger = icetray.I3PrintfLogger()
-icetray.set_log_level(icetray.I3LogLevel.LOG_INFO)
+icetray.set_log_level(icetray.I3LogLevel.LOG_FATAL)
 #icetray.set_log_level_for_unit("EarthModelService",icetray.I3LogLevel.LOG_TRACE)
 #icetray.set_log_level_for_unit("I3NuG",icetray.I3LogLevel.LOG_TRACE)
-icetray.set_log_level_for_unit("ZenithSampler",icetray.I3LogLevel.LOG_INFO)
-icetray.set_log_level_for_unit("I3NuG",icetray.I3LogLevel.LOG_INFO)
+icetray.set_log_level_for_unit("ZenithSampler",icetray.I3LogLevel.LOG_FATAL)
+icetray.set_log_level_for_unit("I3NuG",icetray.I3LogLevel.LOG_FATAL)
 #icetray.set_log_level_for_unit("I3NuG",icetray.I3LogLevel.LOG_INFO)
 
 #----------------
